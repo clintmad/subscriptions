@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Subscriptions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Subscriptions</h1>
+
+  <div class="alert">
+    Invalid Subscription
+  </div>
+
+  <form>
+    <legend>New Subscription</legend>
+    <input name="name" placeholder="Name"><br/>
+    <input name="description" placeholder="Description">
+    <h4>End Date:</h4>
+    <input type="date" name="date">
+    <input type="Submit">
+  </form>
+
+  <ul class='subscription-list'></ul>
+
+  <script src="jquery.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>

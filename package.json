@@ -1,0 +1,18 @@
+{
+  "name": "subscriptions",
+  "version": "1.0.0",
+  "description": "Program to add subscriptions you've signed up for as a reminder to end them before you have to pay",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "author": "Clint Madariaga-Zittel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
+  }
+}
