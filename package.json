@@ -4,12 +4,14 @@
   "description": "Program to add subscriptions you've signed up for as a reminder to end them before you have to pay",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "NODE_ENV=test mocha test.js"
   },
   "author": "Clint Madariaga-Zittel",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "mocha": "^4.0.1",
