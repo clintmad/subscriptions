@@ -58,21 +58,21 @@ describe('Creating new subscriptions', function() {
 
         request(app)
             .post('/subscriptions')
-            .send('name=Netflix&description=streaming&date=02/02/2018')
+            .send('name=Netflix&description=streaming')
             .expect(201, done);
     });
     it('Return the subscription name', function(done) {
 
         request(app)
             .post('/subscriptions')
-            .send('name=Netflix&description=streaming&date=02/02/2018')
+            .send('name=Netflix&description=streaming')
             .expect(/netflix/i, done);
     });
     it('Validates name and date', function(done) {
 
         request(app)
             .post('/subscriptions')
-            .send('name=&date=')
+            .send('name=&description=')
             .expect(400, done);
     });
 });
