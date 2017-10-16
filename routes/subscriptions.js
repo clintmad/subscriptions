@@ -3,7 +3,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var urlencode = bodyParser.urlencoded({ extended: false });
 
-// Redis connection
 var redis = require('redis');
 if (process.env.REDISTOGO_URL) {
   var rtg = require("url").parse(process.env.REDISTOGO_URL);
@@ -13,46 +12,45 @@ if (process.env.REDISTOGO_URL) {
   var client = redis.createClient();
   client.select((process.env.NODE_ENV || 'development').length);
 }
-// End Redis Connection
 
 var router = express.Router();
 
 router.route('/')
-  .get(function (request, response) {
-    client.hkeys('subscriptions', function (error, names) {
-      if (error) throw error;
+  .get(function (req, res) {
+    client.hkeys('subscriptions', function (err, names) {
+      if (err) throw err;
 
-      response.json(names);
+      res.json(names);
     });
   })
 
-  .post(urlencode, function (request, response) {
-    var newSubscription = request.body;
+  .post(urlencode, function (req, res) {
+    var newSubscription = req.body;
     if (!newSubscription.name || !newSubscription.description) {
-      response.sendStatus(400);
+      res.sendStatus(400);
       return false;
     }
-    client.hset('subscriptions', newSubscription.name, newSubscription.description, function (error) {
-      if (error) throw error;
+    client.hset('subscriptions', newSubscription.name, newSubscription.description, function (err) {
+      if (err) throw err;
 
-      response.status(201).json(newSubscription.name);
+      res.status(201).json(newSubscription.name);
     });
   });
 
 
 router.route('/:name')
-  .delete(function (request, response) {
-    client.hdel('subscriptions', request.params.name, function (error) {
-      if (error) throw error;
-      response.sendStatus(204);
+  .delete(function (req, res) {
+    client.hdel('subscriptions', req.params.name, function (err) {
+      if (err) throw err;
+      res.sendStatus(204);
     });
   })
-  .get(function (request, response) {
-    client.hget('subscriptions',request.params.name, function (error, description) {
-      response.render('show.ejs',
+  .get(function (req, res) {
+    client.hget('subscriptions',req.params.name, function (err, description) {
+      res.render('show.ejs',
         {
           subscription:
-          { name: request.params.name, description: description  }
+          { name: req.params.name, description: description  }
         });
     });
   });

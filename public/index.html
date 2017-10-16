@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Subscriptions</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <script src="https://use.fontawesome.com/8d912a5ea5.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Kalam:700" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
 
-  <h1>Subscriptions</h1>
+<body class="background">
+
+  <h1 class="header">Subscriptions</h1>
 
   <div class="alert">
     Invalid Subscription
@@ -15,16 +21,20 @@
 
   <form>
     <legend>New Subscription</legend>
-    <input name="name" placeholder="Name"><br/>
+    <input name="name" placeholder="Name">
+    <br/>
     <input name="description" placeholder="Description">
-    <input type="Submit">
+    <input class="submit" type="Submit">
   </form>
 
-  <ul class='subscription-list'>
-      <h4>Subscriptions</h4>
-  </ul>
+  <div class="current-list">
+    <legend>Subscriptions</legend>
+    <ul class='subscription-list'></ul>
+  </div>
+  
 
   <script src="jquery.js"></script>
   <script src="client.js"></script>
 </body>
+
 </html>

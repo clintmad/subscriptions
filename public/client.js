@@ -27,9 +27,9 @@ $(function(){
         var content, subscription;
         for(var i in subscriptions){
           subscription = subscriptions[i];
-          content = '<a href="/subscriptions/'+subscription+'">'+subscription+'</a>'+ 
-            ' <a href="#" data-subscription="'+subscription+'">'+
-            '<img src="delete.png" width="15px"></a>';
+          content = '<div class=flex-container>' +'<a href="/subscriptions/'+subscription+'">'
+            +subscription+'</a>'+ ' <a href="#" data-subscription="'+subscription+'">'+
+            '<i class="fa fa-window-close-o" aria-hidden="true"></i>'+ '</div>';
           list.push($('<li>', { html: content }));
         }
     

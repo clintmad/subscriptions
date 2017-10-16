@@ -4,7 +4,7 @@
   "description": "Program to add subscriptions you've signed up for as a reminder to end them before you have to pay",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test & mocha app.js test.js",
+    "test": "NODE_ENV=test & mocha test.js",
     "start": "node bin/www"
   },
   "author": "Clint Madariaga-Zittel",
