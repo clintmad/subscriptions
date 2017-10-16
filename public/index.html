@@ -13,24 +13,33 @@
 
 <body class="container-fluid background">
 
-  <h1 class="header">Subscriptions</h1>
 
   <div class="alert">
     Invalid Subscription
   </div>
-
-  <form>
-    <legend>New Subscription</legend>
-    <input name="name" placeholder="Name">
-    <input name="description" placeholder="Description">
-    <input class="submit" type="Submit">
-  </form>
-
-  <div class="current-list">
-    <legend>Subscriptions</legend>
-    <ul class='subscription-list'></ul>
-  </div>
+  <div class="subs">
+    <div class="box-flex">
+      <h1 class="header">Subscriptions</h1>
+    </div>
+    <div class="box-flex">
+      <form>
+        <legend>New Subscription</legend>
+        <input name="name" placeholder="Name">
+        <input name="description" placeholder="Description">
+        <input class="submit" type="Submit">
+      </form>
+    </div>
+    <div class="box-flex">
+      <div class="current-list">
+        <legend>Subscriptions</legend>
+        <ul class='subscription-list'></ul>
+      </div>
   
+    </div>
+  </div>
+
+
+
 
   <script src="jquery.js"></script>
   <script src="client.js"></script>

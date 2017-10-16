@@ -8,9 +8,6 @@ html, body {
   background-repeat: no-repeat;
   color: black;
   font-family: 'Kalam', cursive;
-  margin: 0 auto;
-  padding-top: 100px;
-  max-width: 650px;
 }
 
 .header {
@@ -23,6 +20,10 @@ html, body {
     1px -1px 0 #000,
     -1px 1px 0 #000,
     1px 1px 0 #000;
+}
+
+.subs {
+  margin-top: 50px;
 }
 
 ul {
@@ -50,7 +51,9 @@ a:active {
   color: #333;
 }
 
-form, .current-sub, .current-list {
+form, .current-sub, .current-list {  
+  padding-top: 100px;
+  width: 650px;
   background: white;
   margin-bottom: 20px;
   padding: 20px;
@@ -103,4 +106,9 @@ input:focus {
 
 .subscription-list li a:last-child {
   padding-right: 10px;
+}
+
+.box-flex {
+  display:flex;
+  justify-content: center;
 }
