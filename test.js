@@ -72,7 +72,7 @@ describe('Creating new subscriptions', function() {
 
         request(app)
             .post('/subscriptions')
-            .send('name=&description=')
+            .send('name=&date=')
             .expect(400, done);
     });
 });
