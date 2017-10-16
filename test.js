@@ -58,21 +58,21 @@ describe('Creating new subscriptions', function() {
 
         request(app)
             .post('/subscriptions')
-            .send('name=Netflix&description=Movie+streaming&date=02/02/2018')
+            .send('name=Netflix&description=streaming&date=02/02/2018')
             .expect(201, done);
     });
     it('Return the subscription name', function(done) {
 
         request(app)
             .post('/subscriptions')
-            .send('name=Netflix&description=Movie+streaming&date=02/02/2018')
+            .send('name=Netflix&description=streaming&date=02/02/2018')
             .expect(/netflix/i, done);
     });
     it('Validates name and date', function(done) {
 
         request(app)
             .post('/subscriptions')
-            .send('name=&date=')
+            .send('name=&description=')
             .expect(400, done);
     });
 });
@@ -80,7 +80,7 @@ describe('Creating new subscriptions', function() {
 describe('Deleting subscriptions', function() {
 
     before(function() {
-        client.hset('subscriptions', 'Netflix', 'Movie Streaming');
+        client.hset('subscriptions', 'Hulu', 'streaming');
     });
 
     after(function(){
@@ -90,7 +90,34 @@ describe('Deleting subscriptions', function() {
     it('Returns a 204 status code', function(done) {
 
         request(app)
-            .delete('/subscriptions/Netflix')
+            .delete('/subscriptions/Hulu')
             .expect(204, done);
+    });
+});
+
+describe('Shows subscription info', function() {
+
+    before(function() {
+        client.hset('subscriptions', 'Hulu', 'streaming')
+    });
+
+    after(function() {
+        client.flushdb();
+    });
+
+    it('Returns 200 status', function(done) {
+        request(app)
+            .get('/subscriptions/Hulu')
+            .expect(200, done);
+    });
+    it('Returns HTML format', function(done) {
+        request(app)
+            .get('/subscriptions/Hulu')
+            .expect('Content-Type', /html/, done);
+    });
+    it('Returns information for given subscription', function(done) {
+        request(app)
+            .get('/subscriptions/Hulu')
+            .expect(/streaming/, done);
     });
 });

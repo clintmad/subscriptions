@@ -3686,6 +3686,7 @@
     
     /*
         Implementation Summary
+    
         1. Enforce API surface and semantic compatibility with 1.9.x branch
         2. Improve the module's maintainability by reducing the storage
             paths to a single mechanism.
@@ -9187,3 +9188,4 @@
     return jQuery;
     
     }));
+    
