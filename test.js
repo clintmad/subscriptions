@@ -41,10 +41,11 @@ describe('Listing subscriptions on /subscriptions', function () {
 
         request(app)
             .get('/subscriptions')
-            .expect('Content-Type', /json/, done)
+            .expect('Content-Type', /json/, done);
     });
 
     it('Returns initial subscriptions', function (done) {
+
         request(app)
             .get('/subscriptions')
             .expect(JSON.stringify([]), done);
@@ -53,22 +54,43 @@ describe('Listing subscriptions on /subscriptions', function () {
 
 describe('Creating new subscriptions', function() {
 
-    before(function() {
-
-    });
-
     it('Returns a 201 status code', function(done) {
 
         request(app)
             .post('/subscriptions')
-            .send('name&description&date')
+            .send('name=Netflix&description=Movie+streaming&date=02/02/2018')
             .expect(201, done);
     });
     it('Return the subscription name', function(done) {
 
         request(app)
             .post('/subscriptions')
-            .send('name=Netflix&description=Netflix&date=02/02/2018')
+            .send('name=Netflix&description=Movie+streaming&date=02/02/2018')
             .expect(/netflix/i, done);
+    });
+    it('Validates name and date', function(done) {
+
+        request(app)
+            .post('/subscriptions')
+            .send('name=&date=')
+            .expect(400, done);
+    });
+});
+
+describe('Deleting subscriptions', function() {
+
+    before(function() {
+        client.hset('subscriptions', 'Netflix', 'Movie Streaming');
+    });
+
+    after(function(){
+        client.flushdb();
+    });
+
+    it('Returns a 204 status code', function(done) {
+
+        request(app)
+            .delete('/subscriptions/Netflix')
+            .expect(204, done);
     });
 });
